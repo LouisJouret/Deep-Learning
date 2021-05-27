@@ -2,7 +2,6 @@ import torch
 
 def dMSE(v, t):
     dmse = 2 * (v - t)
-
     return dmse
 
 def MSE(v, t):
@@ -10,7 +9,5 @@ def MSE(v, t):
     return loss
 
 def d_cross_entropy(v, t):
-    dce = torch.zeros_like(v)
-    dce[0] = -t[0]/v[0] + (1-t[0])/(1-v[0])
-    #dce[1] = -t[1] / v[1] + (1 - t[1]) / (1 - v[1])
+    dce = (v-t)/(v*(1-v))
     return dce
